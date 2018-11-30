@@ -17,7 +17,7 @@
 					if($_SESSION['member_type'] == "director" || $_SESSION['member_type'] == "admin"){
 						echo ('
 							<div class="card col-12 col-md-3 mt-3 mt-md-0">
-								<div class="card-img-top w-100 h-100 bg-card" style="background:url('.VIEW_BASE.'assets/images/svg/user.svg'.');"></div>
+								<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/svg/user.svg);"></div>
 								<div class="card-body text-center">
 									<h5 class="card-title"><b>Cadastrar Membros</b></h5>
 									<p class="card-text">Associe os membros ao PFC</p>
@@ -30,7 +30,7 @@
 				?>
 					
 					<div class="card col-12 col-md-3 mt-3 mt-md-0">
-						<div class="card-img-top w-100 h-100 bg-card" style="background:url('<?php echo VIEW_BASE?>/assets/images/svg/refresh.svg');"></div>
+						<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/svg/refresh.svg);"></div>
 						<div class="card-body text-center">
 							<h5 class="card-title"><b>Atualizar Cadastro</b></h5>
 							<p class="card-text">Atualize as informações</p>
@@ -39,7 +39,7 @@
 					</div>
 					<br>
 					<div class="card col-12 col-md-3 mt-3  mt-md-0">
-					  	<div class="card-img-top w-100 h-100 bg-card" style="background:url('<?php echo VIEW_BASE?>/assets/images/svg/graph.svg');"></div>
+					  	<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/svg/graph.svg);"></div>
 						<div class="card-body text-center">
 							<h5 class="card-title"><b>Histórico de Pontos</b></h5>
 							<p class="card-text">Visualize o histórico</p>
@@ -48,7 +48,7 @@
 					</div>
 					<br>
 					<div class="card col-12 col-md-3 mt-3 mt-md-0">
-					  	<div class="card-img-top w-100 h-100 bg-card" style="background:url('<?php echo VIEW_BASE?>/assets/images/svg/get-money.svg');"></div>
+					  	<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/svg/get-money.svg);"></div>
 						<div class="card-body text-center">
 							<h5 class="card-title"><b>Solicitar Reembolso</b></h5>
 							<p class="card-text">Solicite o seu reembolso</p>
