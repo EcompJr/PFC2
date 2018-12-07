@@ -11,10 +11,10 @@
 	
 	if(DEBUG === true){
 		define('URI_BASE',"http://".$_SERVER['SERVER_NAME']."/".$pasta."/index.php"); //Root URI
-		define('ROOT_URL',"http://".$_SERVER['SERVER_NAME'].":9000"."/"); //Root directory
-		define('DOWNLOAD_URL',"http://".$_SERVER['SERVER_NAME']."/index.php/");
-		define('VIEW_BASE',"http://".$_SERVER['SERVER_NAME']."/".$pasta."/views/");//Recupera a pasta da view
-		define('MEDIA_BASE',ABSOLUTE_PATH."/media/");
+		define('ROOT_URL',"http://".$_SERVER['SERVER_NAME'].":9000"."/".$pasta."/"); //Root directory
+		define('DOWNLOAD_URL',"http://".$_SERVER['SERVER_NAME']."/index.php"."/");
+		define('VIEW_BASE',"http://".$_SERVER['SERVER_NAME'].":9000"."/".$pasta."/views"."/");//Recupera a pasta da view
+		define('MEDIA_BASE',ABSOLUTE_PATH."/media"."/");
 		
 		define("HOST","localhost");
 		define("USERDB","root");
