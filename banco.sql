@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `pfc`.`member` (
   `member_type` ENUM('director', 'member', 'trainee', 'admin') NOT NULL,
   `score` DECIMAL(10,2) NOT NULL,
   `path_profile_picture` VARCHAR(300) NOT NULL,
+  `scorePCD` DECIMAL(10,2) NOT NULL,
   PRIMARY KEY (`cpf`),
   UNIQUE INDEX `personal_email_UNIQUE` (`personal_email` ASC))
 ENGINE = InnoDB;
@@ -157,7 +158,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `pfc`;
-INSERT INTO `pfc`.`member` (`name`, `personal_email`, `professional_email`, `rg`, `cpf`, `password`, `birthdate`, `telephone`, `marital_status`, `member_type`, `score`, `path_profile_picture`) VALUES ('Empresa', 'admin@admin.com', 'admin@admin.com', '00.000.000-00', '000.000.000-00', '$2y$10$xW0C87qP6Itk7Xw5OShBQujtpANYHsawZVAaV/Emk6S8ddhsR/Vse', '01/01/2000', '(75) 3161-8354', 'single', 'admin', 0, 'not_found');
+INSERT INTO `pfc`.`member` (`name`, `personal_email`, `professional_email`, `rg`, `cpf`, `password`, `birthdate`, `telephone`, `marital_status`, `member_type`, `score`, `path_profile_picture`, `scorePCD`) VALUES ('Empresa', 'admin@admin.com', 'admin@admin.com', '00.000.000-00', '000.000.000-00', '$2y$10$T.Y4ITR0zNF22tDamnLL3uzJByU8Gsu.eSQzXGBC.xpO.VOYdqAC2', '01/01/2000', '(75) 3161-8354', 'single', 'admin', 0, 'not_found', 0);
 
 COMMIT;
 
