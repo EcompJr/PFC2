@@ -138,61 +138,100 @@
 					<div class="col-12">
 						<h6>Pontuação Atual: 
 							<span id="score">
+							<br>
 								<?php 
 									if(isset($this->data['single_profile'])){
-										echo $this->data['single_profile']->getScore();
+										echo "PFC:".$this->data['single_profile']->getScore()." pontos"."<br>PCD:".$this->data['single_profile']->getScorePCD()." pontos";
 									}
 								?>
-							</span> pontos
+							</span>
 						</h6>
 					</div>
 				</div>
 			</div>
             
 			<div class="col-12 col-md-9 text-center">
-
-				<div class="row">
-					<div class="col-12">
-						<h3>Histórico de Pontos</h3><br>
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" style="cursor:pointer" id="pfc-link">PFC</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" style="cursor:pointer" id="pcd-link">PCD</a>
+					</li>
+				</ul>
+				
+				<div id="pfc">
+					<div class="row">
+						<div class="col-12">
+							<h3>Histórico de Pontos</h3><br>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-12">
+							<table class="table">
+								<thead class="thead-light text-center">
+									<tr>
+										<th scope="col">Motivo</th>
+										<th scope="col">Data</th>
+										<th scope="col">Transação</th>
+									</tr>
+								</thead>
+								<tbody class="text-center" id="history-body">
+									<?php
+										if(isset($this->data['history'])){
+											foreach($this->data['history'] as $transaction){
+												$result;
+												if($transaction['action'] == "gain"){
+													$result = "<td class='text-success'>".$transaction['value']."</td>";
+												}else{
+													$result = "<td class='text-danger'>".$transaction['value']."</td>";
+												}
+												
+												echo '<tr>
+														<td>'.$transaction['reason'].'</td>
+														<td>'.$transaction['date'].'</td>'.
+														$result.
+													'</tr>';
+											}
+										}
+									?>
+								</tbody>
+							</table>
+							<div class="col-md-3"></div>
+						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-12">
-						<table class="table">
-							<thead class="thead-light text-center">
-								<tr>
-									<th scope="col">Motivo</th>
-									<th scope="col">Data</th>
-									<th scope="col">Transação</th>
-								</tr>
-							</thead>
-							<tbody class="text-center" id="history-body">
-								<?php
-									if(isset($this->data['history'])){
-										foreach($this->data['history'] as $transaction){
-											$result;
-											if($transaction['action'] == "gain"){
-												$result = "<td class='text-success'>".$transaction['value']."</td>";
-											}else{
-												$result = "<td class='text-danger'>".$transaction['value']."</td>";
-											}
-											
-											echo '<tr>
-													<td>'.$transaction['reason'].'</td>
-													<td>'.$transaction['date'].'</td>'.
-													$result.
-												  '</tr>';
-										}
-									}
-								?>
-							</tbody>
-						</table>
-						<div class="col-md-3"></div>
+				
+				<div id="pcd" style="display:none">
+					<div class="row">
+						<div class="col-12">
+							<h3>Histórico de Advertências</h3><br>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<table class="table">
+								<thead class="thead-light text-center">
+									<tr>
+										<th scope="col">Motivo</th>
+										<th scope="col">Data</th>
+										<th scope="col">Pontos</th>
+										<th scope="col">Indeferida</th>
+									</tr>
+								</thead>
+								<tbody class="text-center" id="request-body"></tbody>
+							</table>
+							<div class="col-md-3"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		
 	</div>
 	<?php $this->loadFooter()?>
 	<?php $this->loadJavascript()?>
+	<script src="<?php $this->path('assets/js/member_history.js')?>"></script>
+
 </html>

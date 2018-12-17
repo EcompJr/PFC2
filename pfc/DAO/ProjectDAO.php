@@ -111,17 +111,18 @@
                         }
                     }
                     $members[] = array(new Member(isset($item['name'])?$item['name']:null,
-                                            isset($item['personal_email'])?$item['personal_email']:null,
-                                            isset($item['professional_email'])?$item['professional_email']:null,
-                                            isset($item['rg'])?$item['rg']:null,
-                                            isset($item['cpf'])?$item['cpf']:null,
-                                            null, //Password null
-                                            isset($item['birthdate'])?$item['birthdate']:null,
-                                            isset($item['telephone'])?$item['telephone']:null,
-                                            isset($item['marital_status'])?$item['marital_status']:null,
-                                            isset($item['member_type'])?$item['member_type']:null,
-                                            isset($item['score'])?$item['score']:null,
-                                            isset($item['path_profile_picture'])?$item['path_profile_picture']:null),
+                                                isset($item['personal_email'])?$item['personal_email']:null,
+                                                isset($item['professional_email'])?$item['professional_email']:null,
+                                                isset($item['rg'])?$item['rg']:null,
+                                                isset($item['cpf'])?$item['cpf']:null,
+                                                null,
+                                                isset($item['birthdate'])?$item['birthdate']:null,
+                                                isset($item['telephone'])?$item['telephone']:null,
+                                                isset($item['marital_status'])?$item['marital_status']:null,
+                                                isset($item['member_type'])?$item['member_type']:null,
+                                                isset($item['score'])?$item['score']:null,
+                                                isset($item['path_profile_picture'])?$item['path_profile_picture']:null,
+                                                isset($item['scorePCD'])?$item['scorePCD']:null),
                                             
                                         isset($item['role'])?$role:null);
                 }    

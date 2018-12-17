@@ -84,7 +84,7 @@
 				</div>
 				<div class="row mt-2">
 					<div class="col-12">
-						<h6>Pontuação Atual: <span id="score"></span> pontos</h6>
+						<h6>Pontuação Atual: <br>PFC: <span id="score"></span> pontos<br>PCD: <span id="scorePCD"></span> pontos</h6>
 					</div>
 				</div>
 				

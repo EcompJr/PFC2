@@ -60,9 +60,15 @@ $(document).ready(function () {
                 scoreLessThan:true,
                 scoreGreaterThan:true,
             },
+            scorePCD:{
+                required:true,
+                scoreLessThan:true,
+                scoreGreaterThan:true,
+            },
             member_type:{
                 required:true
             }
+            
 
         },
         messages:{
@@ -98,6 +104,11 @@ $(document).ready(function () {
                 required:"Por favor, preencha este campo."
             },
             score:{
+                required:"Por favor, preencha este campo.",
+                scoreLessThan:"Pontuação Máxima: 250 pontos",
+                scoreGreaterThan:"Pontuação Mínima: 0 pontos",
+            },
+            scorePCD:{
                 required:"Por favor, preencha este campo.",
                 scoreLessThan:"Pontuação Máxima: 250 pontos",
                 scoreGreaterThan:"Pontuação Mínima: 0 pontos",

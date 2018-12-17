@@ -78,7 +78,7 @@
 						</div>
 
 						<div class="row mt-2">
-							<div class="col-12 col-md-6">
+							<div class="form-group col-md-6">
 								<label for="marital_status">Estado Civil</label>
 								<select class="form-control" id="marital_status" name="marital_status">
 								  <option value="single">Solteiro(a)</option>
@@ -88,9 +88,13 @@
 								</select>
 							</div>
 
-							<div class="col-12 col-md-6">
-								<label for="score">Pontos</label>
+							<div class="form-group col-md-3">
+								<label for="score">PFC</label>
 							  	<input type="number" name="score" id="score" class="form-control">
+							</div>
+							<div class="form-group col-md-3">
+								<label for="score">PCD</label>
+							  	<input type="number" name="scorePCD" id="scorePCD" value="20" class="form-control">
 							</div>
 						</div>
 						<br>

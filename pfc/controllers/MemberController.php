@@ -26,7 +26,9 @@
                                          $_POST['marital_status'],
                                          $_POST['member_type'],
                                          $_POST['score'],
-                                         $_POST['path_profile_picture']);
+                                         $_POST['path_profile_picture'],
+                                         $_POST['scorePCD']
+                                        );
                                 
                     $memberDAO->insert($member); //Saves the member in database
                     $this->redirect('member'); //Redirect the page
@@ -78,7 +80,7 @@
                     $this->loadContent('director_history', $this->data['profiles']);
                 }
                 else{
-                    $fields = array('name,personal_email,professional_email,birthdate,telephone,member_type,score,marital_status');
+                    $fields = array('name,personal_email,professional_email,birthdate,telephone,member_type,score,marital_status,scorePCD');
                     $filters = array("cpf"=>$_SESSION['cpf']);                    
                     $member = $memberDAO->retrieve($fields,$filters);
                     $this->data['single_profile'] = $member[0];

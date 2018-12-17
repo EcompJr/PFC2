@@ -6,10 +6,10 @@
         public function insert($member){
             $stmt = $this->PDO->prepare("INSERT INTO `member`(`name`, `personal_email`, `professional_email`, 
                                                        `rg`, `cpf`, `password`, `birthdate`, `telephone`, `marital_status`, 
-                                                       `member_type`, `score`, `path_profile_picture`) 
+                                                       `member_type`, `score`, `path_profile_picture`, `scorePCD`) 
                                  VALUES (:name,:personal_email,:professional_email,:rg,
                                         :cpf,:password,:birthdate,:telephone,:marital_status,
-                                        :member_type,:score,:path_profile_picture)");
+                                        :member_type,:score,:path_profile_picture,:scorePCD)");
             
             $stmt->bindValue(":name",$member->getName(),PDO::PARAM_STR);
             $stmt->bindValue(":personal_email",$member->getPersonalEmail(),PDO::PARAM_STR);
@@ -23,6 +23,7 @@
             $stmt->bindValue(":member_type",$member->getMemberType(),PDO::PARAM_STR);
             $stmt->bindValue(":score",$member->getScore(),PDO::PARAM_STR);
             $stmt->bindValue(":path_profile_picture",$member->getProfilePicture(),PDO::PARAM_STR);
+            $stmt->bindValue(":scorePCD",$member->getScorePCD(),PDO::PARAM_STR);
             
             $stmt->execute();
 
@@ -90,7 +91,8 @@
                                             isset($item['marital_status'])?$item['marital_status']:null,
                                             isset($item['member_type'])?$item['member_type']:null,
                                             isset($item['score'])?$item['score']:null,
-                                            isset($item['path_profile_picture'])?$item['path_profile_picture']:null);
+                                            isset($item['path_profile_picture'])?$item['path_profile_picture']:null,
+                                            isset($item['scorePCD'])?$item['scorePCD']:null);
                 }    
             }
             
@@ -134,7 +136,8 @@
                                             isset($item['marital_status'])?$item['marital_status']:null,
                                             isset($item['member_type'])?$item['member_type']:null,
                                             isset($item['score'])?$item['score']:null,
-                                            isset($item['path_profile_picture'])?$item['path_profile_picture']:null);
+                                            isset($item['path_profile_picture'])?$item['path_profile_picture']:null,
+                                            isset($item['scorePCD'])?$item['scorePCD']:null);
                 }    
             }
             

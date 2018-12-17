@@ -14,9 +14,10 @@
         private $member_type;
         private $score;
         private $profile_picture;
+        private $scorePCD;
 
         public function __construct($name,$personal_email,$professional_email,$rg,$cpf,$password,$birthdate,$telephone,$marital_status,
-                                    $member_type,$score,$profile_picture){
+                                    $member_type,$score,$profile_picture,$scorePCD){
             
             $this->name = $name;
             $this->personal_email = $personal_email;
@@ -30,6 +31,8 @@
             $this->member_type = $member_type;
             $this->score = $score;
             $this->profile_picture = $profile_picture;
+            $this->scorePCD = $scorePCD;
+
         }
 
         public function getName(){
@@ -83,6 +86,10 @@
             }
         }
 
+        public function getScorePCD(){
+            return $this->scorePCD;
+        }
+
         public function jsonSerialize(){
             return [
                 "name"=>$this->name,
@@ -96,6 +103,8 @@
                 "member_type"=>$this->member_type,
                 "score"=>$this->score,
                 "profile_picture"=>$this->profile_picture,
+                "scorePCD"=>$this->scorePCD,
+
             ];
         }
     }

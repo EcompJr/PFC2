@@ -20,7 +20,7 @@ $(document).ready(function(){
                 member = JSON.parse(data)[0];
                 member_history = JSON.parse(data)[1];
                 member_request = JSON.parse(data)[2];
-
+                
 
                 $('#name').text(member.name);
                 $('#personal_email').text(member.personal_email);
@@ -30,7 +30,9 @@ $(document).ready(function(){
                 $('#marital_status').text(getMaritalStatus(member.marital_status));
                 $('#member_type').text(getMemberType(member.member_type));
                 $('#score').text(member.score);
-                
+                $('#scorePCD').text(member.scorePCD);
+                var objectInStringFormat = JSON.stringify(member);
+                alert(objectInStringFormat);
                 
                 
                 $('#withdrawal-name').text(member.name);
