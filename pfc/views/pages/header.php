@@ -12,6 +12,7 @@
             <?php 
                 if(isset($_SESSION['isLogged']) && $_SESSION['isLogged']){
                     echo '<li class="nav-item"><a class="nav-link" href="'.ROOT_URL.'member">Área de Membros</a></li>';
+                    echo '<li class="nav-item"><a class="nav-link" href="'.ROOT_URL.'advertence">Área PCD</a></li>';
                     echo '<li class="nav-item"><a class="nav-link" href="'.ROOT_URL.'project">Área de Projetos</a></li>';
                 }
                 else{

@@ -26,6 +26,10 @@ button{
 	margin-bottom: 3vh;
 }
 
+.datepick .input-group {
+	margin-top: 0vh;
+	margin-bottom: 0vh;
+}
 
 label.btn{
 	cursor: pointer;
