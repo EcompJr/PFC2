@@ -31,9 +31,6 @@ $(document).ready(function(){
                 $('#member_type').text(getMemberType(member.member_type));
                 $('#score').text(member.score);
                 $('#scorePCD').text(member.scorePCD);
-                var objectInStringFormat = JSON.stringify(member);
-                alert(objectInStringFormat);
-                
                 
                 $('#withdrawal-name').text(member.name);
                 $('#withdrawal-cpf').val(cpf);

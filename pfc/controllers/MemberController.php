@@ -193,7 +193,7 @@
                 $memberDAO = new MemberDAO();
                 $historyDAO = new HistoryDAO();
                 $requestDAO = new RequestDAO();
-                $fields = array('name,personal_email,professional_email,birthdate,telephone,member_type,score,marital_status');
+                $fields = array('name,personal_email,professional_email,birthdate,telephone,member_type,score,marital_status,scorePCD');
                 
                 $filters = array('cpf'=>$_POST['cpf']);
                 $members = $memberDAO->retrieve($fields,$filters); //Get the member

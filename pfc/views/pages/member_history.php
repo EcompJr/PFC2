@@ -217,7 +217,7 @@
 										<th scope="col">Motivo</th>
 										<th scope="col">Data</th>
 										<th scope="col">Pontos</th>
-										<th scope="col">Indeferida</th>
+										<th scope="col">Deferida</th>
 									</tr>
 								</thead>
 								<tbody class="text-center" id="request-body"></tbody>
