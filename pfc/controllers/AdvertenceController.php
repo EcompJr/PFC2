@@ -2,42 +2,35 @@
     
     class AdvertenceController extends MainController{
 
-        //This method loads the index of members area
+        //Call the index page
         public function index(){
-            if($this->isLogged()){
+            if($this->isAdmin()){
                 $this->loadContent('advertence_index',array());
             }
         }
-
         /*This method provides the service to register of the members. The register should be made by directors
         and all fields are required*/
         public function register(){
             if($this->isAdmin()){
                 if(isset($_POST) && !empty($_POST)){
-                    $memberDAO = new MemberDAO();
-                    $member = new Member($_POST['name'],
-                                         $_POST['personal_email'],
-                                         $_POST['professional_email'],
-                                         $_POST['rg'],
-                                         $_POST['cpf'],
-                                         password_hash($_POST['password'],PASSWORD_DEFAULT),
-                                         $_POST['birthdate'],
-                                         $_POST['telephone'],
-                                         $_POST['marital_status'],
-                                         $_POST['member_type'],
-                                         $_POST['score'],
-                                         $_POST['path_profile_picture'],
-                                         $_POST['scorePCD']
+                    $advertenceDAO = new AdvertenceDAO();
+                    $advertence = new Advertence($_POST['memberName'],
+                                         $_POST['reason'],
+                                         $_POST['datepicker'],
+                                         $_POST['defense'],
+                                         $_POST['points'],
+                                         $_POST['responsible']
                                         );
                                 
-                    $memberDAO->insert($member); //Saves the member in database
-                    $this->redirect('advertence'); //Redirect the page
+                    $advertenceDAO->insert($advertence); //Saves the advertence in database
+                    var_dump($_POST);
+                    // $this->redirect('advertence'); //Redirect the page
                 }else{
-                    $memberDAO = new MemberDAO();
+                    $advertenceDAO = new AdvertenceDAO();
                     $fields = array('name');
                     $filters = array("cpf"=>$_SESSION['cpf']);                    
-                    $member = $memberDAO->retrieve($fields,$filters);
-                    $this->data['single_profile'] = $member[0];
+                    $advertence = $advertenceDAO->retrieve($fields,$filters);
+                    $this->data['single_profile'] = $advertence[0];
                     $this->loadContent('advertence_register', $this->data);
                 }
             }

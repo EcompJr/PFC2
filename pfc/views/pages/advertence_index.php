@@ -12,7 +12,7 @@
         
 		<div class="container mt-5 flex-grow animated fadeInLeftBig" id="cards-home">
 			<div class="col-12">
-				<div class="row justify-content-around">
+				<div class="row justify-content-center">
 				<?php 
 					if($_SESSION['member_type'] == "director" || $_SESSION['member_type'] == "admin"){
 						echo ('
@@ -25,10 +25,7 @@
 								</div>
 							</div>
 							<br>
-						');
-					}
-				?>
-					
+						
 					<div class="card col-12 col-md-5 mt-5 mt-md-0">
 						<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/svg/refresh.svg);"></div>
 						<div class="card-body text-center">
@@ -38,6 +35,9 @@
 						</div>
 					</div>
 					<br>
+					');
+				}
+				?>
 					
 				</div>
 			</div>
