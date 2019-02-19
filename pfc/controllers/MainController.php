@@ -46,7 +46,9 @@ class MainController{
 		echo ('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>');
         echo '<script src="'.VIEW_BASE.'assets/js/jquery.mask.min.js"></script>';      
         echo '<script src='.VIEW_BASE.'assets/js/common.js></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>';
+        echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>';
+        echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/additional-methods.min.js"></script>';
+
     }
 
 
