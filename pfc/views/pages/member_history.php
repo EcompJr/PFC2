@@ -11,7 +11,7 @@
 	<?php $this->loadHeader()?> 
 
 	<div class="container mt-4 flex-grow">
-				
+	
 		<div class="row mt-5">
 			<div class="col-12 col-md-3 text-center" id="member_data">
 				<div class="row">
@@ -217,10 +217,27 @@
 										<th scope="col">Motivo</th>
 										<th scope="col">Data</th>
 										<th scope="col">Pontos</th>
+										<th scope="col">Responsável</th>
 										<th scope="col">Deferida</th>
 									</tr>
 								</thead>
-								<tbody class="text-center" id="request-body"></tbody>
+								<tbody class="text-center" id="request-body">
+									<?php 
+										if(isset($this->data['advertences_list'])){
+											foreach($this->data['advertences_list'] as $adv){
+												echo '<tr>
+														<td>'.$adv->getReason().'</td>
+														<td>'.$adv->getDate().'</td>	
+														<td>'.$adv->getPoints().'</td>	
+														<td>'.$adv->getResponsible().'</td>														
+														<td>'.$adv->getDefense().'</td>														
+
+													  </tr>';
+											
+											}
+										}
+									?>
+								</tbody>
 							</table>
 							<div class="col-md-3"></div>
 						</div>

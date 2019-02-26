@@ -90,6 +90,10 @@
                     $history = $historyDAO->retrieve(array(),$filters);
                     $this->data['history'] = $history;
 
+                    $advDAO = new AdvertenceDAO();
+                    $filters = array('memberName'=>$_SESSION['name']);
+                    $advertences = $advDAO->retrieve(array(),$filters);
+                    $this->data['advertences_list'] = $advertences;
                     $this->loadContent('member_history', $this->data);
                 }
             }

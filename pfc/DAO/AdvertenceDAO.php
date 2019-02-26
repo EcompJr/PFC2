@@ -54,7 +54,7 @@
                 $fields = array("*");
             }
 
-            $query .= implode(',',$fields)." FROM member";
+            $query .= implode(',',$fields)." FROM advertences";
 
             if(count($filters) > 0){
                 $query .= " WHERE ";
@@ -68,26 +68,19 @@
             }
             $result = $this->PDO->query($query);
             
-            $members = array();
+            $advertences = array();
             if(!empty($result) && $result->rowCount() > 0){
                 foreach($result->fetchAll() as $item){
-                    $members[] = new Member(isset($item['name'])?$item['name']:null,
-                                            isset($item['personal_email'])?$item['personal_email']:null,
-                                            isset($item['professional_email'])?$item['professional_email']:null,
-                                            isset($item['rg'])?$item['rg']:null,
-                                            isset($item['cpf'])?$item['cpf']:null,
-                                            isset($item['password'])?$item['password']:null,
-                                            isset($item['birthdate'])?$item['birthdate']:null,
-                                            isset($item['telephone'])?$item['telephone']:null,
-                                            isset($item['marital_status'])?$item['marital_status']:null,
-                                            isset($item['member_type'])?$item['member_type']:null,
-                                            isset($item['score'])?$item['score']:null,
-                                            isset($item['path_profile_picture'])?$item['path_profile_picture']:null,
-                                            isset($item['scorePCD'])?$item['scorePCD']:null);
+                    $advertences[] = new Advertence(isset($item['memberName'])?$item['memberName']:null,
+                                            isset($item['reason'])?$item['reason']:null,
+                                            isset($item['date'])?$item['date']:null,
+                                            isset($item['defense'])?$item['defense']:null,
+                                            isset($item['points'])?$item['points']:null,
+                                            isset($item['responsible'])?$item['responsible']:null);                                       
                 }    
             }
             
-            return $members;
+            return $advertences;
         }
 
         //Search a member in database using LIKE. The query is generated dinamically from the parameters
