@@ -23,14 +23,18 @@
                                         );
                                 
                     $advertenceDAO->insert($advertence); //Saves the advertence in database
-                    var_dump($_POST);
-                    // $this->redirect('advertence'); //Redirect the page
+                    
+                    $this->redirect('advertence'); //Redirect the page
                 }else{
-                    $advertenceDAO = new AdvertenceDAO();
+                    $memberDAO = new MemberDAO();
                     $fields = array('name');
                     $filters = array("cpf"=>$_SESSION['cpf']);                    
-                    $advertence = $advertenceDAO->retrieve($fields,$filters);
-                    $this->data['single_profile'] = $advertence[0];
+                    $member = $memberDAO->retrieve($fields,$filters);
+                    //Selecting member type other than adm
+                    $filters_members = array("member_type !"=>'admin');
+                    $members = $memberDAO->retrieve($fields,$filters_members);
+                    $this->data['single_profile'] = $member[0];
+                    $this->data['membersList'] = $members;
                     $this->loadContent('advertence_register', $this->data);
                 }
             }

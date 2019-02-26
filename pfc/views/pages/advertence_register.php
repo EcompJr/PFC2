@@ -25,10 +25,20 @@
 						</div> -->
 						<h2>Adicionar Advertência</h2>
 						<div class="row mt-2">
-							<div class="col-12 form-group">
+							<div class="col-12 form-group col-md-12">
 								<label for="memberName">Membro</label>
 
-								<input type="text" name="memberName"  id="memberName" class="form-control">
+								<!-- <input type="text" name="memberName"  id="memberName" class="form-control"> -->
+								<select name="memberName"  id="memberName" class="form-control">
+								<option value="" disabled selected>Escolha um Membro</option>	
+								<?php 
+									if(isset($this->data['membersList'])){
+										for($i=0; $i < sizeof($this->data['membersList']); $i++){
+											echo '<option value='.$this->data['membersList'][$i]->getName().'>'.$this->data['membersList'][$i]->getName().'</option>';	
+										}
+									}
+								?>
+								</select>
 							</div>
 						</div>
 						
