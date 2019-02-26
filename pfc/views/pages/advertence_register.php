@@ -34,7 +34,7 @@
 								<?php 
 									if(isset($this->data['membersList'])){
 										for($i=0; $i < sizeof($this->data['membersList']); $i++){
-											echo '<option value='.$this->data['membersList'][$i]->getName().'>'.$this->data['membersList'][$i]->getName().'</option>';	
+											echo '<option value="'.$this->data['membersList'][$i]->getName().'">'.$this->data['membersList'][$i]->getName().'</option>';	
 										}
 									}
 								?>
