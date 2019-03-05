@@ -13,6 +13,7 @@
         public function register(){
             if($this->isAdmin()){
                 if(isset($_POST) && !empty($_POST)){
+                    
                     $advertenceDAO = new AdvertenceDAO();
                     $advertence = new Advertence($_POST['memberName'],
                                          $_POST['reason'],
@@ -21,9 +22,15 @@
                                          $_POST['points'],
                                          $_POST['responsible']
                                         );
-                                
+                    //Retrieving member pcd score the value according to the new advertence             
+                    $memberDAO = new MemberDAO();  
+                    $fields = array('scorePCD');      
+                    $filters = array('name'=>$_POST['memberName']);
+                    $memberPoints = $memberDAO->retrieve($fields,$filters);  
+                    $newScore = $memberPoints[0]->getScorePCD() - $_POST['points'];    
+                    $memberDAO->update(array('scorePCD'=>$newScore), array('name'=>$_POST['memberName']));
+
                     $advertenceDAO->insert($advertence); //Saves the advertence in database
-                    
                     $this->redirect('advertence'); //Redirect the page
                 }else{
                     $memberDAO = new MemberDAO();
@@ -61,42 +68,14 @@
                 }else{
                     //Loads the data from advertences to the table
                     $advDAO = new AdvertenceDAO();
-                    // $fields = array('name,professional_email,telephone,path_profile_picture');
-                    // $filters = array('cpf'=>$_SESSION['cpf']);
-                    // $member = $memberDAO->retrieve($fields,$filters);
-                    $this->loadContent('advertence_update',array());
+                    $fields = array();
+                    $filters = array();
+                    $this->data['advertencesList'] = $advDAO->retrieve($fields,$filters);
+                    $this->loadContent('advertence_update', $this->data);
                 }
             }
         }
         
-        //This method provides the service of history of the transactions performed by members.
-        public function history(){
-            if($this->isLogged()){
-                $memberDAO = new MemberDAO();
-                $fields = array('cpf,path_profile_picture');
-                $filters = array();
-                $members = $memberDAO->retrieve($fields,$filters);
-
-                if($_SESSION['member_type'] == "director" || $_SESSION['member_type'] == "admin"){
-                    $this->data['profiles'] = $members;
-                    $this->loadContent('director_history', $this->data['profiles']);
-                }
-                else{
-                    $fields = array('name,personal_email,professional_email,birthdate,telephone,member_type,score,marital_status,scorePCD');
-                    $filters = array("cpf"=>$_SESSION['cpf']);                    
-                    $member = $memberDAO->retrieve($fields,$filters);
-                    $this->data['single_profile'] = $member[0];
-
-                    $historyDAO = new HistoryDAO();
-                    $filters = array('member_cpf'=>$_SESSION['cpf']);
-                    $history = $historyDAO->retrieve(array(),$filters);
-                    $this->data['history'] = $history;
-
-                    $this->loadContent('member_history', $this->data);
-                }
-            }
-        }
-
         //Get the history from specific member
         public function selectMemberHistory(){
             if($this->isLogged()){
