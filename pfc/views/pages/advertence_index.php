@@ -27,11 +27,11 @@
 							<br>
 						
 					<div class="card col-12 col-md-5 mt-5 mt-md-0">
-						<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/svg/refresh.svg);"></div>
+						<div class="card-img-top w-100 h-100 bg-card" style="background:url(views/assets/images/gerenciar.svg);"></div>
 						<div class="card-body text-center">
-							<h5 class="card-title"><b>Atualizar Advertência</b></h5>
+							<h5 class="card-title"><b>Gerenciar Advertências</b></h5>
 							<p class="card-text">Atualize as informações</p>
-							<a href="<?php echo ROOT_URL?>advertence/update" class="btn btn-primary">Atualizar</a>
+							<a href="'.ROOT_URL.'advertence/update" class="btn btn-primary">Atualizar</a>
 						</div>
 					</div>
 					<br>
