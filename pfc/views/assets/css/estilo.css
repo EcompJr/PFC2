@@ -237,3 +237,11 @@ label.btn.focus,label.btn.active,label.btn:hover{
   color:white !important;
   text-decoration: none !important;
 }
+
+#advertences_length {
+  text-align: initial!important;
+}
+
+#advertences_info {
+  text-align: initial!important;
+}
