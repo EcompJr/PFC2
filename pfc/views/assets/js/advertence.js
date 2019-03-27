@@ -82,4 +82,55 @@ $(document).ready(function(){
             $("#points").val("10");
         }
     });
+
+
+
+    $('#exclude_adv').on('click',function(){
+        alert();
+        let cpf = $('#exclude-cpf').val();
+        let admin_password = $('#password').val();
+        console.log('oi');
+        var method = window.location.href.split('/');
+        method.pop();
+        method.push('removeMember');
+        method = method.join('/');
+
+        $.post(
+            method,
+            {
+                member_cpf:cpf,
+                password_director:admin_password
+            },
+            function(data){
+                data = JSON.parse(data);
+                if(data.success){
+                    window.location.reload();
+                }else{
+                    $('#response').text(data.message);
+                }
+            }
+        );
+    });
 });
+
+function excluirAdv(id){
+    var method = window.location.href.split('/');
+    method.pop();
+    method.push('removeAdvertence');
+    method = method.join('/');
+
+    $.post(
+        method,
+        {
+            advId:id
+        },
+        function(data){
+            data = JSON.parse(data);
+            if(data.success){
+                window.location.reload();
+            }else{
+                $('#response').text(data.message);
+            }
+        }
+    );
+}
