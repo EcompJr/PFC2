@@ -22,7 +22,7 @@
 
         //Update the advertence data in database. The query is generated dinamically from the parameters
         public function update($data,$filters){
-            $query = "UPDATE advertence SET ";
+            $query = "UPDATE advertences SET ";
 
             foreach($data as $key=>$value){
                 $query .= $key.'='."'$value',";
@@ -76,7 +76,8 @@
                                             isset($item['date'])?$item['date']:null,
                                             isset($item['defense'])?$item['defense']:null,
                                             isset($item['points'])?$item['points']:null,
-                                            isset($item['responsible'])?$item['responsible']:null);                                       
+                                            isset($item['responsible'])?$item['responsible']:null,
+                                            isset($item['adv_id'])?$item['adv_id']:null);
                 }    
             }
             
@@ -130,7 +131,7 @@
 
         //Delete a member from database. The query is generated dinamically from the parameters
         public function delete($filters){
-            $query = "DELETE FROM member ";
+            $query = "DELETE FROM advertences ";
 
             if(count($filters) > 0){
                 $aux = array();
