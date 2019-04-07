@@ -139,7 +139,7 @@
 
 	<?php $this->loadFooter()?>	
 	<?php $this->loadJavascript()?>
-	<script src="<?php $this->path('assets/js/advertence_register.js')?>"></script>
+	<script src="<?php $this->path('assets/js/advertence.js')?>"></script>
 	<script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
 	<script>
 		var today, datepicker;
