@@ -114,23 +114,25 @@ $(document).ready(function(){
 });
 
 function excluirAdv(id){
-    var method = window.location.href.split('/');
-    method.pop();
-    method.push('removeAdvertence');
-    method = method.join('/');
+    
+     var method = window.location.href.split('/');
+     method.pop();
+     method.push('removeAdvertence');
+     method = method.join('/');
 
-    $.post(
-        method,
-        {
-            advId:id
-        },
-        function(data){
-            data = JSON.parse(data);
-            if(data.success){
-                window.location.reload();
-            }else{
-                $('#response').text(data.message);
-            }
-        }
-    );
+     $.post(
+         method,
+         {
+             advId:id,
+            
+         },
+         function(data){
+             data = JSON.parse(data);
+             if(data.success){
+                 window.location.reload();
+             }else{
+                 alert(data.message);
+             }
+         }
+     );
 }

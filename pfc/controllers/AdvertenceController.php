@@ -98,9 +98,21 @@
 
                     $advDAO = new AdvertenceDAO();
 
+                    $fields = array('memberName', 'points');
+                    $filters = array("adv_id"=>$_POST['advId']);
+                    $adv = $advDAO->retrieve($fields,$filters);
+
+                    $memberDAO = new MemberDAO();  
+                    $fields = array('scorePCD');      
+                    $filters = array('name'=>$adv[0]->getMemberName());
+                    $member = $memberDAO->retrieve($fields,$filters);  
+
+                    $newScore = $member[0]->getScorePCD() + $adv[0]->getPoints();
+                    $memberDAO->update(array('scorePCD'=>$newScore), array('name'=>$adv[0]->getMemberName()));
+
                     //Remove the advertence
-                    $advDAO->delete(array("adv_id"=>$_POST['advId']));
-                    echo json_encode(array("success"=>true,"message"=>""));
+                     $advDAO->delete(array("adv_id"=>$_POST['advId']));
+                     echo json_encode(array("success"=>true,"message"=>""));
                 
                 }
             }

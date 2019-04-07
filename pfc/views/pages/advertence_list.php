@@ -44,7 +44,7 @@
 													<td>'.$advertences->getPoints().'</td>	
 													<td>'.$advertences->getResponsible().'</td>														
 													<td>'.$advertences->getDefense().'</td>														
-													<td><a href="'.ROOT_URL.'advertence/update/'.$advertences->getId().'" class="btn btn-primary"><i class="fas fa-edit"></i></a><button type="button" onclick="excluirAdv('.$advertences->getId().')"class=" btn btn-danger"><i class="fas fa-trash"></i></button></td>														
+													<td><a href="'.ROOT_URL.'advertence/update/'.$advertences->getId().'" class="btn btn-secondary"><i class="fas fa-edit"></i></a><button type="button" onclick="excluirAdv('.$advertences->getId().')"class=" btn btn-danger"><i class="fas fa-trash"></i></button></td>														
 												</tr>';
 											
 										}
