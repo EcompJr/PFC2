@@ -53,7 +53,34 @@
             if($this->isAdmin()){
                 $advDAO = new AdvertenceDAO();
                 if(count($advertence_id) > 0){
+
+                    //Loads the data from advertence to edit
+                    $fields = array();
+                    $filters = array("adv_id"=>$advertence_id[0]);
+                    $adv = $advDAO->retrieve($fields,$filters);
+                    $memberDAO = new MemberDAO();
+
                     if(isset($_POST) && !empty($_POST)){
+                        
+                       
+                        $fields = array('scorePCD');      
+                        $filters = array('name'=>$adv[0]->getMemberName());
+                        $member = $memberDAO->retrieve($fields,$filters);  
+                        //Checking if new score is different, which means its necessary to update member ScorePCD
+                        $pontosPCD = "";
+                        if($_POST['points'] < $adv[0]->getPoints()){
+
+                            $pontosPCD = $adv[0]->getPoints() - $_POST['points'];
+                            $newScore = $member[0]->getScorePCD() + $pontosPCD;
+
+
+                        }else if($_POST['points'] > $adv[0]->getPoints()){
+
+                            $pontosPCD = $_POST['points'] - $adv[0]->getPoints();
+                            $newScore = $member[0]->getScorePCD() - $pontosPCD;
+
+                        }
+
                         //Save advertence data 
                         $fields = array(
                                         "reason"=>$_POST['reason'],
@@ -61,21 +88,18 @@
                                         "defense"=>$_POST['defense'],
                                         "points"=>$_POST['points']
                                         );
-
+                        
+                        $memberDAO->update(array('scorePCD'=>$newScore), array('name'=>$adv[0]->getMemberName()));
+                        
                         $advDAO->update($fields,array("adv_id"=>$_POST['advId']));
                         $this->redirect('advertence');
                     }else{
 
-                        $memberDAO = new MemberDAO();
                         $fields = array('name');
                         $filters = array("cpf"=>$_SESSION['cpf']);                    
                         $member = $memberDAO->retrieve($fields,$filters);
                         $this->data['single_profile'] = $member[0];
-                       
-                        //Loads the data from advertence to edit
-                        $fields = array();
-                        $filters = array("adv_id"=>$advertence_id[0]);
-                        $adv = $advDAO->retrieve($fields,$filters);
+                        
                         $this->data['advertence'] = $adv[0];
                         $this->loadContent('advertence_update', $this->data);
                     }
