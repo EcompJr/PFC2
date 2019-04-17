@@ -245,3 +245,12 @@ label.btn.focus,label.btn.active,label.btn:hover{
 #advertences_info {
   text-align: initial!important;
 }
+
+.numberCircle {
+  width: 3rem;
+  line-height: 3rem;
+  border-radius: 10%;
+  text-align: center;
+  font-size: 2rem;
+  border: 3px solid #666;
+}

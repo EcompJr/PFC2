@@ -12,11 +12,53 @@
 
 	<div class="container mt-4 flex-grow">
 	
-		<div class="row mt-5">
+		<div class="row mt-5" >
 			<div class="col-12 col-md-3 text-center" id="member_data">
 				<div class="row">
 					<div class="col-12">
 						<h5>Sobre o Membro</h5>
+					</div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-12">
+						<p><b>PFC </b>
+							<span id="score">
+								<?php 
+									if(isset($this->data['single_profile'])){
+										$pfc = $this->data['single_profile']->getScore();
+										
+										if($pfc > 0){
+											echo "<br><span class='text-success numberCircle' style='border-color:#28a745'>".$pfc." </span>";
+										}else{
+											echo "<br><span class='text-secondary numberCircle' style='border-color: #6c757d'>".$pfc." </span>";
+										}
+										
+									}
+								?>
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-12">
+						<h6><b>PCD </b>
+							<span id="score">
+							<br>
+								<?php 
+									if(isset($this->data['single_profile'])){
+										$pcd = $this->data['single_profile']->getScorePCD();
+
+										if($pcd > 11){
+											echo "<span class='text-success numberCircle' style='border-color:#28a745'>".$pcd." </span>";
+										}else if($pcd < 12 && $pcd >7){
+											echo "<span class='text-warning numberCircle' style='border-color:#ffc107'>".$pcd." </span>";
+										}else{
+											echo "<span class='text-danger numberCircle' style='border-color: #dc3545'>".$pcd." </span>";
+										}
+									}
+								?>
+							</span>
+						</h6>
 					</div>
 				</div>
 				<div class="row">
@@ -134,20 +176,7 @@
 						</h6>
 					</div>
 				</div>
-				<div class="row mt-2">
-					<div class="col-12">
-						<h6>Pontuação Atual: 
-							<span id="score">
-							<br>
-								<?php 
-									if(isset($this->data['single_profile'])){
-										echo "PFC:".$this->data['single_profile']->getScore()." pontos"."<br>PCD:".$this->data['single_profile']->getScorePCD()." pontos";
-									}
-								?>
-							</span>
-						</h6>
-					</div>
-				</div>
+				
 			</div>
             
 			<div class="col-12 col-md-9 text-center">
