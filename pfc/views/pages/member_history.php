@@ -255,17 +255,17 @@
 										if(isset($this->data['advertences_list'])){
 											$reason_title;
 											foreach($this->data['advertences_list'] as $adv){
-												if($advertences->getReason() == 1){
+												if($adv->getReason() == 1){
 													$reason_title ="Ausência nas reuniões";
-												}else if($advertences->getReason() == 2){
+												}else if($adv->getReason() == 2){
 													$reason_title ="Por atraso nas reuniões ao qual foi solicitado";
-												}else if($advertences->getReason() == 3){
+												}else if($adv->getReason() == 3){
 													$reason_title ="Ausência ou atraso nas atividades para os quais forem designados";
-												}else if($advertences->getReason() == 4){
+												}else if($adv->getReason() == 4){
 													$reason_title ="Ausência de resposta dos comunicados internos";
-												}else if($advertences->getReason() == 5){
+												}else if($adv->getReason() == 5){
 													$reason_title ="Ausência na sede no horário acordado (plantão)";
-												}else if($advertences->getReason() == 6){
+												}else if($adv->getReason() == 6){
 													$reason_title ="Atitudes Negativas";
 												}
 												echo '<tr>
@@ -293,5 +293,5 @@
 	<?php $this->loadFooter()?>
 	<?php $this->loadJavascript()?>
 	<script src="<?php $this->path('assets/js/member_history.js')?>"></script>
-
+</body>
 </html>
