@@ -54,30 +54,30 @@ $(document).ready(function(){
 
             $("#points").val("");
         }
-        else if ($("#reason option:selected").val() == "motivo1" ){
+        else if ($("#reason option:selected").val() == "1" ){
 
             $("#points").val("4");
 
-        }else if ($("#reason option:selected").val() == "motivo2" ){
+        }else if ($("#reason option:selected").val() == "2" ){
 
             $("#points").val("2");
 
-        }else if ($("#reason option:selected").val() == "motivo3" ){
+        }else if ($("#reason option:selected").val() == "3" ){
                         
             $("#qtdDias").removeAttr('disabled');
             $("#qtdDias").change(function() { 	
                 $("#points").val($("#qtdDias").val()*2);
             })
 
-        }else if ($("#reason option:selected").val() == "motivo4" ){
+        }else if ($("#reason option:selected").val() == "4" ){
 
             $("#points").val("2");
 
-        }else if ($("#reason option:selected").val() == "motivo5" ){
+        }else if ($("#reason option:selected").val() == "5" ){
 
             $("#points").val("4");
 
-        }else if ($("#reason option:selected").val() == "motivo6" ){
+        }else if ($("#reason option:selected").val() == "6" ){
                 
             $("#points").val("10");
         }
