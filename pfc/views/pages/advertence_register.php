@@ -47,12 +47,12 @@
                                 <label for="reason">Motivo</label>
                                     <select id="reason" class="form-control is-valid" name="reason">
                                         <option value="" disabled selected>Escolha uma das opções</option>	
-                                        <option value="motivo1">Ausência em Reunião</option>
-                                        <option value="motivo2">Atraso em Reuniões</option>
-                                        <option value="motivo3">Ausência ou atraso nas atividades</option>
-                                        <option value="motivo4">Ausência de resposta dos comunicados</option>
-                                        <option value="motivo5">Ausência na sede no horário acordado</option>
-                                        <option value="motivo6">Atitudes negativas</option>
+                                        <option value="1">Ausência em Reunião</option>
+                                        <option value="2">Atraso em Reuniões</option>
+                                        <option value="3">Ausência ou atraso nas atividades</option>
+                                        <option value="4">Ausência de resposta dos comunicados</option>
+                                        <option value="5">Ausência na sede no horário acordado</option>
+                                        <option value="6">Atitudes negativas</option>
                                     </select>
 							</div>
 						</div>
@@ -91,8 +91,10 @@
                                     <option value="indeferida" selected>Indeferida</option>
 								</select>
 							</div>
+
 						</div>
-                       
+							<input type="hidden" id="email_destinatario" name="email_destinatario" value="<?php if(isset($this->data['membersList'])){	echo($this->data['membersList'][0]->getProfessionalEmail());}?>">
+							<input type="hidden" id="email_remetente" name="email_remetente" value="<?php if(isset($this->data['single_profile'])){	echo($this->data['single_profile']->getProfessionalEmail());}?>">
 						
 						<br>
 						<div class="row mt-2">
@@ -100,11 +102,12 @@
 						</div>						
 					</form>
 
-
+								
 				</div>
 				<div class="d-none d-sm-block col-md-3 col-lg-4"></div>
 			</div>
 		</div>
+		
 	</main>
 
 	<?php $this->loadFooter()?>	
