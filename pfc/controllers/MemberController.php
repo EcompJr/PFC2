@@ -104,16 +104,24 @@
             if($this->isLogged()){
                 if($_SESSION['member_type'] != "admin" ){
                     if(isset($_POST) && !empty($_POST)){
-                    $requestDAO = new RequestDAO();
-                    $cpf = $_SESSION['cpf'];
-                    $request_id = $requestDAO->insert($cpf,$_POST['request_reason'],'opened');
+                       
+                        $requestDAO = new RequestDAO();
+                        $cpf = $_SESSION['cpf'];
 
-                    //Save and associate request files
-                    $paths = $this->saveRequestFiles();
-                    foreach($paths as $path){
-                        $requestDAO->associateFile($request_id,$path);    
-                    }
-                    $this->redirect('member',array());
+                        if($_POST['request_choice']== 'refund'){
+
+                            $request_id = $requestDAO->insert($cpf,$_POST['request_reason'],'opened', '');
+        
+                            //Save and associate request files
+                            $paths = $this->saveRequestFiles();
+                            foreach($paths as $path){
+                                $requestDAO->associateFile($request_id,$path);    
+                            }
+                        }else{
+                            $requestDAO->insert($cpf,$_POST['request_reason'],'opened', $_POST['text_area_pfc']);
+                        }
+                        $this->redirect('member',array());
+                    
                     }else{
                         $this->loadContent('member_request');
                     }
@@ -184,7 +192,8 @@
                     $this->data['member_data'] = array("name"=>$member[0]->getName(),
                                                         "score"=>$member[0]->getScore(),
                                                         "request_reason"=>$request_response[0]['reason'],
-                                                        "files"=>$request_response[0]['files']);
+                                                        "files"=>$request_response[0]['files'],
+                                                        "pfc_req"=>$request_response[0]['pfc_request']);
                     
                     $this->loadContent('director_response',$this->data);
                 }
@@ -315,7 +324,7 @@
                     //Saves file on server and send the response containing the path.
                     $path = $directoryName.'/'.$finalName;
                     move_uploaded_file($_FILES['files']['tmp_name'][$i],$path);
-                    array_push($paths,DOWNLOAD_URL."media/requests/".$finalName);
+                    array_push($paths,DOWNLOAD_URL."pfc/media/requests/".$finalName);
                 }
                 return $paths;
             }

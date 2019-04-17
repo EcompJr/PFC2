@@ -21,7 +21,7 @@
 						
                         <div class="row mt-3">
 							<div class="col-12">
-								<label for="member_name">Solicitante: </label>
+								<label for="member_name"><b>Solicitante:</b> </label>
 								<span id="member_name">
                                     <?php if(isset($this->data['member_data'])){
                                         echo $this->data['member_data']['name'];
@@ -55,21 +55,26 @@
 
 						<div class="row mt-3">
 							<div class="col-12">
-								<label for="files">Comprovantes</label>
-								<span id="files">
-									<ul>
-										
-										<?php if(isset($this->data['member_data'])){
-											$i = 0;
-											foreach($this->data['member_data']['files'] as $file){
-												echo "<li><a download href=".$file['path']."> Baixar Comprovante ".++$i."</a></li>";
-											}
-                                    	}?>
-									
-									
-									</ul>
-                                    
-                                </span>
+								<?php 
+
+								if(isset($this->data['member_data']) && isset($this->data['member_data']['files']) && $this->data['member_data']['files']){
+									echo '<label for="files">Comprovantes</label>
+									<span id="files">
+										<ul>';
+											
+												$i = 0;
+												foreach($this->data['member_data']['files'] as $file){
+													echo "<li><a download href=".$file['path']."> Baixar Comprovante ".++$i."</a></li>";
+												}
+											
+										echo '</ul></span>';
+								}else{
+									echo '<label for="files">Pedido PFC</label>
+									<span id="pfc_req">
+										<textarea class="form-control" readonly id="text_area_pfc" name="text_area_pfc" rows="5">'.$this->data['member_data']['pfc_req'].'</textarea>
+									</span>';
+								}
+								?>
 							</div>
 						</div>
 						

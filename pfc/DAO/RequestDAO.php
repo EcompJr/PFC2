@@ -3,15 +3,16 @@
     class RequestDAO extends DAO{
 
         //Insert a new request in database
-        public function insert($cpf,$reason,$status){
-            $stmt = $this->PDO->prepare("INSERT INTO `member_request`(`request_id`, `member_cpf`,`status`,`reason`) 
-                                 VALUES (:request_id,:member_cpf,:status,:reason)");
+        public function insert($cpf,$reason,$status,$pfc_request){
+            $stmt = $this->PDO->prepare("INSERT INTO `member_request`(`request_id`, `member_cpf`,`status`,`reason`, `pfc_request`) 
+                                 VALUES (:request_id,:member_cpf,:status,:reason,:pfc_request)");
             
 
             $stmt->bindValue(":request_id",null,PDO::PARAM_STR);
             $stmt->bindValue(":member_cpf",$cpf,PDO::PARAM_STR);
             $stmt->bindValue(":status",$status,PDO::PARAM_STR);
             $stmt->bindValue(":reason",$reason,PDO::PARAM_STR);
+            $stmt->bindValue(":pfc_request",$pfc_request,PDO::PARAM_STR);
 
             $stmt->execute();
             return $this->PDO->lastInsertId();
@@ -73,7 +74,8 @@
                                        "member_cpf"=>isset($item['member_cpf'])?$item['member_cpf']:null,
                                        "reason"=>isset($item['reason'])?$item['reason']:null,
                                        "status"=>isset($item['status'])?$item['status']:null,
-                                       "files"=>isset($item['request_id'])?$this->getRequestFiles($item['request_id']):null);
+                                       "files"=>isset($item['request_id'])?$this->getRequestFiles($item['request_id']):null,
+                                       "pfc_request"=>isset($item['pfc_request'])?$item['pfc_request']:null);
                 }
             }
             
