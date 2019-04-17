@@ -122,8 +122,6 @@
 								</select>
 							</div>
 						</div>
-						<input type="hidden" id="advId" name="advId" value="<?php if(isset($this->data['advertence'])){	echo ($this->data['advertence']->getId());}?>">
-						
 						<br>
 						<div class="row mt-2">
 							<button type="submit" class="btn col-8 btn-primary mx-auto mt-3" id="confirmar">Pronto</button>
