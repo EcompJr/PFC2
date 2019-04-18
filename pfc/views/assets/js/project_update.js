@@ -38,11 +38,14 @@ $(document).ready(function(){
         method.pop();
         method.push('finish');
         method = method.join('/');
+        //Retrieve project ID from window location
+        customUrl = window.location.href.split("/");
+        id = customUrl[customUrl.length -1];
 
         $.post(
             method,
             {
-                'project_id':window.location.href.slice(-1),
+                'project_id':id,
                 'password':$('#password').val()
             },
             function(data){
@@ -68,11 +71,15 @@ $(document).ready(function(){
         method.pop();
         method.push('paymentCheckout');
         method = method.join('/');
-        
+
+        //Retrieve project ID from window location
+        customUrl = window.location.href.split("/");
+        id = customUrl[customUrl.length -1];
+
         $.post(
             method,
             {
-                'project_id':window.location.href.slice(-1),
+                'project_id':id,
                 'value':$('#payment_receive').val()
             },
             function(data){
@@ -104,13 +111,17 @@ $(document).ready(function(){
         method.pop();
         method.push('searchMember');
         method = method.join('/');
-        
+
+        //Retrieve project ID from window location
+        customUrl = window.location.href.split("/");
+        id = customUrl[customUrl.length -1];
+
         //Send request
         $.post(
             method,
             {
                 'filter':name,
-                'project_id':window.location.href.slice(-1)
+                'project_id':id
             },function(data){
                 createList(JSON.parse(data));
             }
@@ -156,13 +167,17 @@ window.add_vendor = function(vendor_id){
     method.push('associateMember');
     method = method.join('/');
 
+    //Retrieve project ID from window location
+    customUrl = window.location.href.split("/");
+    id = customUrl[customUrl.length -1];
+
     //Send request
     $.post(
         method,
         {
             'member_id':vendor_id,
             'role':"vendor",
-            'project_id':window.location.href.slice(-1)
+            'project_id':id
         },
         function(data){
             $("#member_list").empty()
@@ -201,14 +216,18 @@ window.add_member = function(member_id){
     method.pop();
     method.push('associateMember');
     method = method.join('/');
-    
+
+    //Retrieve project ID from window location
+    customUrl = window.location.href.split("/");
+    id = customUrl[customUrl.length -1];
+
     //Send request
     $.post(
         method,
         {
             'member_id':member_id,
             'role':"member",
-            'project_id':window.location.href.slice(-1)
+            'project_id':id
         },
         function(data){
             $("#member_list").empty()
@@ -245,13 +264,17 @@ window.remove = function(member){
     method.pop();
     method.push('disassociateMember');
     method = method.join('/');
-    
+
+    //Retrieve project ID from window location
+    customUrl = window.location.href.split("/");
+    id = customUrl[customUrl.length -1];
+
     $.post(
         method,
         {
             'member_id':member_id,
             'role':member_role,
-            'project_id':window.location.href.slice(-1)
+            'project_id':id
         },
         function(data){
             $("#member_list").empty()
