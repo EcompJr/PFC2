@@ -28,12 +28,12 @@
 							<div class="col-12 d-flex justify-content-around">
 								
 								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="request_choice_refund" required name="request_choice" class="custom-control-input">
-									<label class="custom-control-label" for="request_choice_refund" value="refund">Reembolso</label>
+									<input type="radio" id="request_choice_refund" required name="request_choice"  value="refund" class="custom-control-input">
+									<label class="custom-control-label" for="request_choice_refund">Reembolso</label>
 								</div>
 								<div class="custom-control custom-radio custom-control-inline">
-									<input type="radio" id="request_choice_pfc" name="request_choice" class="custom-control-input">
-									<label class="custom-control-label" for="request_choice_pfc" value="pfc">PFC</label>
+									<input type="radio" id="request_choice_pfc" name="request_choice" value="pfc" class="custom-control-input">
+									<label class="custom-control-label" for="request_choice_pfc" >PFC</label>
 								</div>
 							</div>
 						</div>
