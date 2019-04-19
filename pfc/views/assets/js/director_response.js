@@ -9,22 +9,21 @@ $(document).ready(function(){
             value_required:{
                 required:true,
                 number:true
+            },
+            text_area_response:{
+                required:true
             }
         },
         messages:{
             value_required:{
                 required:"Por favor, preencha este campo.",
                 number:"Insira um número válido"
+            },
+            text_area_response:{
+                required:"Por favor, preencha este campo."
             }
         }
     });
 
-    $('#value_required').on('keyup blur',function(){
-        if($('#form').valid()){
-            $('#confirm').attr('disabled',false);
-        }else{
-            $('#confirm').attr('disabled','disabled');
-        }
-    });   
 });
 

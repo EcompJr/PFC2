@@ -108,7 +108,7 @@
                         $requestDAO = new RequestDAO();
                         $cpf = $_SESSION['cpf'];
 
-                        if($_POST['request_choice']== 'refund'){
+                        if($_POST['request_choice'] == 'refund'){
 
                             $request_id = $requestDAO->insert($cpf,$_POST['request_reason'],'opened', '');
         
@@ -117,7 +117,7 @@
                             foreach($paths as $path){
                                 $requestDAO->associateFile($request_id,$path);    
                             }
-                        }else{
+                        }else if($_POST['request_choice'] == 'pfc'){
                             $requestDAO->insert($cpf,$_POST['request_reason'],'opened', $_POST['text_area_pfc']);
                         }
                         $this->redirect('member',array());
@@ -137,44 +137,65 @@
             $request = $request_id[0];
             
             if($this->isAdmin()){
-                if(isset($_POST) && !empty($_POST)){ //Register the refund
-                    $value_required = intval($_POST['value_required']);
+                if(isset($_POST) && !empty($_POST)){ 
+                    if(isset($_POST['value_required'])){
+                        //Register the refund
+                        $value_required = intval($_POST['value_required']);
 
-                    $requestDAO = new RequestDAO();
-                    $memberDAO = new MemberDAO();
+                        $requestDAO = new RequestDAO();
+                        $memberDAO = new MemberDAO();
 
-                    $filters_request = array("request_id"=>$request);
-                    $request_response = $requestDAO->retrieve(array(),$filters_request); //Get the request
-                    
-                    $fields_member = array("score","name");
-                    $filters_member = array("cpf"=>$request_response[0]['member_cpf']);
-                    $member = $memberDAO->retrieve($fields_member,$filters_member); //Get the member
-                    
-                    $score = intval($member[0]->getScore());
+                        $filters_request = array("request_id"=>$request);
+                        $request_response = $requestDAO->retrieve(array(),$filters_request); //Get the request
 
-                    if($value_required < $score){ //Verify if score is sufficient
-                        $new_score = $score - $value_required;
-                        $data = array("score"=>$new_score);
-                        $filters_update = array("cpf"=>$request_response[0]['member_cpf']);
+                        $fields_member = array("score","name");
+                        $filters_member = array("cpf"=>$request_response[0]['member_cpf']);
+                        $member = $memberDAO->retrieve($fields_member,$filters_member); //Get the member
+
+                        $score = intval($member[0]->getScore());
+
+                        if($value_required < $score){ //Verify if score is sufficient
+                            $new_score = $score - $value_required;
+                            $data = array("score"=>$new_score);
+                            $filters_update = array("cpf"=>$request_response[0]['member_cpf']);
+                            
+                            $memberDAO->update($data,$filters_update);
+                            $requestDAO->update(array("status"=>"accepted"),$filters_request);
+
+                            $historyDAO = new HistoryDAO(); //Add the transaction to member history
+                            $historyDAO->insert($request_response[0]['member_cpf'],
+                                                $request_response[0]['reason'],
+                                                "lose",
+                                                $value_required);
+                            $this->redirect('member/history');
+                        }else{
+                            $this->data['error']  = "Saldo insuficiente!";
+                            $this->data['member_data'] = array("name"=>$member[0]->getName(),
+                                                            "score"=>$member[0]->getScore(),
+                                                            "request_reason"=>$request_response[0]['reason'],
+                                                            "files"=>$request_response[0]['files']);
+                            $this->loadContent('director_response',$this->data);
+                        }
+                    }else if(isset($_POST['text_area_response'])){
+
+                        //Send response to the pfc request, by email to the corresponding member
+                        $remetente = "From: ".$_POST['email_remetente'];
+                        $destinatario =  $_POST['email_destinatario'];
+                        $assunto = "[Resposta a Pedido PFC] ".$_POST['reason'];
+                        $corpo = $_POST['text_area_response'];
+                        $email_sent = mail($destinatario, $assunto, $corpo, $remetente);
+
+                        if($email_sent){
+                            $requestDAO = new RequestDAO();
+                            $filters_request = array("request_id"=>$request);
+                            $requestDAO->update(array("status"=>"accepted"),$filters_request);
+                        }else{
+                            echo "Erro ao enviar e-mail";                            
+                        }
                         
-                        $memberDAO->update($data,$filters_update);
-                        $requestDAO->update(array("status"=>"accepted"),$filters_request);
-
-                        $historyDAO = new HistoryDAO(); //Add the transaction to member history
-                        $historyDAO->insert($request_response[0]['member_cpf'],
-                                            $request_response[0]['reason'],
-                                            "lose",
-                                            $value_required);
-                        $this->redirect('member/history');
-                    }else{
-                        $this->data['error']  = "Saldo insuficiente!";
-                        $this->data['member_data'] = array("name"=>$member[0]->getName(),
-                                                        "score"=>$member[0]->getScore(),
-                                                        "request_reason"=>$request_response[0]['reason'],
-                                                        "files"=>$request_response[0]['files']);
-                        $this->loadContent('director_response',$this->data);
+                        $this->redirect("member/history");
                     }
-
+                    
                 }else{ //Loads the data to view
                     $requestDAO = new RequestDAO();
                     $filters = array("request_id"=>$request);
@@ -183,17 +204,24 @@
                     if($request_response[0]['status'] != "opened"){
                         $this->redirect("member/history");
                     }
-                    $fields_member = array("score","name");
+                    $fields_member = array("score","name","professional_email");
                     $filters_member = array("cpf"=>$request_response[0]['member_cpf']);
 
                     $memberDAO = new MemberDAO();
                     $member = $memberDAO->retrieve($fields_member,$filters_member);
                     
+                    $fields_director = array('name', 'professional_email');
+                    $filters_director = array("cpf"=>$_SESSION['cpf']);                    
+                    $director = $memberDAO->retrieve($fields_director,$filters_director);
+
                     $this->data['member_data'] = array("name"=>$member[0]->getName(),
                                                         "score"=>$member[0]->getScore(),
                                                         "request_reason"=>$request_response[0]['reason'],
                                                         "files"=>$request_response[0]['files'],
-                                                        "pfc_req"=>$request_response[0]['pfc_request']);
+                                                        "pfc_req"=>$request_response[0]['pfc_request'],
+                                                        "pro_email"=>$member[0]->getProfessionalEmail());
+                    $this->data['director'] = array("name"=>$director[0]->getName(),
+                                                    "pro_email"=>$director[0]->getProfessionalEmail());
                     
                     $this->loadContent('director_response',$this->data);
                 }

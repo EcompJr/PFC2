@@ -32,8 +32,8 @@
 
 						<div class="row mt-3">
 							<div class="col-12">
-								<label for="request_reason">Motivo da solicitação: </label>
-								<span id="request_reason">
+								<label for="request_reason"><b>Motivo da solicitação: </b></label>
+								<span id="request_reason" name="reason">
                                     <?php if(isset($this->data['member_data'])){
                                         echo $this->data['member_data']['request_reason'];
                                     }?>
@@ -44,7 +44,7 @@
 
                         <div class="row mt-3">
 							<div class="col-12">
-								<label for="avaliable_score">Saldo disponível: </label>
+								<label for="avaliable_score"><b>Saldo disponível: </b></label>
 								<span id="avaliable_score" name="avaliable_score">
                                     <?php if(isset($this->data['member_data'])){
                                         echo $this->data['member_data']['score'];
@@ -68,23 +68,40 @@
 												}
 											
 										echo '</ul></span>';
+										echo '<div class="row mt-3">
+										<div class="col-12" style="text-align:justify;">
+											<label for="pfc_warning"><b>IMPORTANTE !</b></label>
+											<span id="pfc_warning" style="color:red; font-weight:bold;">
+												<br>No caso de reembolso normal, por exemplo comprovante de água para a sede, digite 0 (zero) no campo de Pontos
+
+											</span>
+										</div>
+									</div>';
+										echo '<div class="row mt-3">
+										<div class="col-12">
+											<label for="value_required">Quantidade de pontos a serem retirados</i></label>
+											<input type="number" class="form-control" placeholder="Quantidade de pontos" id="value_required" name="value_required">
+										</div>
+									</div>';
 								}else{
-									echo '<label for="files">Pedido PFC</label>
+									echo '<label for="files"><b>Pedido PFC</b></label>
 									<span id="pfc_req">
 										<textarea class="form-control" readonly id="text_area_pfc" name="text_area_pfc" rows="5">'.$this->data['member_data']['pfc_req'].'</textarea>
+									</span><br>';
+
+									echo '<label for="files"><b>Resposta ao pedido</b></label>
+									<span id="pfc_response">
+										<textarea class="form-control" id="text_area_response" name="text_area_response" placeholder="Digite a resposta à solicitação" rows="5"></textarea>
 									</span>';
 								}
 								?>
 							</div>
 						</div>
-						
-						<div class="row mt-3">
-                            <div class="col-12">
-                                <label for="value_required">Quantidade de pontos a serem retirados</i></label>
-                                <input type="number" class="form-control" placeholder="Quantidade de pontos" id="value_required" name="value_required">
-                            </div>
-						</div>
 
+						<input type="hidden" id="email_destinatario" name="email_destinatario" value="<?php if(isset($this->data['member_data'])){	echo($this->data['member_data']['pro_email']);}?>">
+						<input type="hidden" id="email_remetente" name="email_remetente" value="<?php if(isset($this->data['director'])){	echo($this->data['director']['pro_email']);}?>">
+						<input type="hidden" id="reason" name="reason" value="<?php if(isset($this->data['member_data'])){	echo $this->data['member_data']['request_reason'];}?>">
+						
 						<div class="row mt-1">
                             <div class="col-12">
                                 <span class="text-danger">
@@ -98,7 +115,7 @@
 						</div>		
 						<div class="row mt-3">
 							<div class="col-12">
-								<button type="submit" class="btn btn-block btn-primary mx-auto" id="confirm" disabled="disabled">Pronto</button>
+								<button type="submit" class="btn btn-block btn-primary mx-auto" id="confirm" >Pronto</button>
 							</div>
 							
 						</div>					
