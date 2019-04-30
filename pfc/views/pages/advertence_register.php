@@ -33,8 +33,10 @@
 								<option value="" disabled selected>Escolha um Membro</option>	
 								<?php 
 									if(isset($this->data['membersList'])){
-										for($i=0; $i < sizeof($this->data['membersList']); $i++){
-											echo '<option value="'.$this->data['membersList'][$i]->getName().'">'.$this->data['membersList'][$i]->getName().'</option>';	
+										if(!empty($this->data['membersList'])){
+											for($i=0; $i < sizeof($this->data['membersList']); $i++){
+												echo '<option value="'.$this->data['membersList'][$i]->getName().'">'.$this->data['membersList'][$i]->getName().'</option>';	
+											}
 										}
 									}
 								?>
@@ -93,7 +95,7 @@
 							</div>
 
 						</div>
-							<input type="hidden" id="email_destinatario" name="email_destinatario" value="<?php if(isset($this->data['membersList'])){	echo($this->data['membersList'][0]->getProfessionalEmail());}?>">
+							<input type="hidden" id="email_destinatario" name="email_destinatario" value="<?php if(isset($this->data['membersList']) && !empty($this->data['membersList'])){	echo($this->data['membersList'][0]->getProfessionalEmail());}?>">
 							<input type="hidden" id="email_remetente" name="email_remetente" value="<?php if(isset($this->data['single_profile'])){	echo($this->data['single_profile']->getProfessionalEmail());}?>">
 						
 						<br>
@@ -101,8 +103,6 @@
 							<button type="submit" class="btn col-8 btn-primary mx-auto mt-3" id="confirmar">Pronto</button>
 						</div>						
 					</form>
-
-								
 				</div>
 				<div class="d-none d-sm-block col-md-3 col-lg-4"></div>
 			</div>
