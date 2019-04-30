@@ -6,11 +6,12 @@
         private $parameters;
 
         public function run() {
-            $path = explode("index.php",$_SERVER['PHP_SELF']);
+            $path = explode("index.php",$_SERVER['REQUEST_URI']);
             
             $path = end($path);
-           
-            if(!empty($path)){
+            
+            if($path != '/'){
+                
                 //Explodes the path and removes the first element from array
                 $path = explode('/',$path);
                 array_shift($path);
