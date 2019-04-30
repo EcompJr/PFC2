@@ -35,48 +35,48 @@
                                 <label for="reason">Motivo</label>
                                     <select id="reason" class="form-control is-valid" name="reason">
 										<?php if(isset($this->data['advertence'])){	
-												if($this->data['advertence']->getReason() == 'motivo1'){
-													echo '<option value="motivo1" selected>Ausência em Reunião</option>
-													<option value="motivo2">Atraso em Reuniões</option>
-													<option value="motivo3">Ausência ou atraso nas atividades</option>
-													<option value="motivo4">Ausência de resposta dos comunicados</option>
-													<option value="motivo5">Ausência na sede no horário acordado</option>
-													<option value="motivo6">Atitudes negativas</option>';
-												} else if($this->data['advertence']->getReason() == 'motivo2'){
-													echo '<option value="motivo1">Ausência em Reunião</option>
-													<option value="motivo2" selected>Atraso em Reuniões</option>
-													<option value="motivo3">Ausência ou atraso nas atividades</option>
-													<option value="motivo4">Ausência de resposta dos comunicados</option>
-													<option value="motivo5">Ausência na sede no horário acordado</option>
-													<option value="motivo6">Atitudes negativas</option>';
-												}else if($this->data['advertence']->getReason() == 'motivo3'){
-													echo '<option value="motivo1">Ausência em Reunião</option>
-													<option value="motivo2">Atraso em Reuniões</option>
-													<option value="motivo3" selected>Ausência ou atraso nas atividades</option>
-													<option value="motivo4">Ausência de resposta dos comunicados</option>
-													<option value="motivo5">Ausência na sede no horário acordado</option>
-													<option value="motivo6">Atitudes negativas</option>';
-												}else if($this->data['advertence']->getReason() == 'motivo4'){
-													echo '<option value="motivo1">Ausência em Reunião</option>
-													<option value="motivo2" >Atraso em Reuniões</option>
-													<option value="motivo3">Ausência ou atraso nas atividades</option>
-													<option value="motivo4" selected>Ausência de resposta dos comunicados</option>
-													<option value="motivo5">Ausência na sede no horário acordado</option>
-													<option value="motivo6">Atitudes negativas</option>';
-												}else if($this->data['advertence']->getReason() == 'motivo5'){
-													echo '<option value="motivo1">Ausência em Reunião</option>
-													<option value="motivo2" >Atraso em Reuniões</option>
-													<option value="motivo3">Ausência ou atraso nas atividades</option>
-													<option value="motivo4">Ausência de resposta dos comunicados</option>
-													<option value="motivo5" selected>Ausência na sede no horário acordado</option>
-													<option value="motivo6">Atitudes negativas</option>';
-												}else if($this->data['advertence']->getReason() == 'motivo6'){
-													echo '<option value="motivo1">Ausência em Reunião</option>
-													<option value="motivo2">Atraso em Reuniões</option>
-													<option value="motivo3">Ausência ou atraso nas atividades</option>
-													<option value="motivo4">Ausência de resposta dos comunicados</option>
-													<option value="motivo5">Ausência na sede no horário acordado</option>
-													<option value="motivo6" selected>Atitudes negativas</option>';
+												if($this->data['advertence']->getReason() == '1'){
+													echo '<option value="1" selected>Ausência em Reunião</option>
+													<option value="2">Atraso em Reuniões</option>
+													<option value="3">Ausência ou atraso nas atividades</option>
+													<option value="4">Ausência de resposta dos comunicados</option>
+													<option value="5">Ausência na sede no horário acordado</option>
+													<option value="6">Atitudes negativas</option>';
+												} else if($this->data['advertence']->getReason() == '2'){
+													echo '<option value="1">Ausência em Reunião</option>
+													<option value="2" selected>Atraso em Reuniões</option>
+													<option value="3">Ausência ou atraso nas atividades</option>
+													<option value="4">Ausência de resposta dos comunicados</option>
+													<option value="5">Ausência na sede no horário acordado</option>
+													<option value="6">Atitudes negativas</option>';
+												}else if($this->data['advertence']->getReason() == '3'){
+													echo '<option value="1">Ausência em Reunião</option>
+													<option value="2">Atraso em Reuniões</option>
+													<option value="3" selected>Ausência ou atraso nas atividades</option>
+													<option value="4">Ausência de resposta dos comunicados</option>
+													<option value="5">Ausência na sede no horário acordado</option>
+													<option value="6">Atitudes negativas</option>';
+												}else if($this->data['advertence']->getReason() == '4'){
+													echo '<option value="1">Ausência em Reunião</option>
+													<option value="2" >Atraso em Reuniões</option>
+													<option value="3">Ausência ou atraso nas atividades</option>
+													<option value="4" selected>Ausência de resposta dos comunicados</option>
+													<option value="5">Ausência na sede no horário acordado</option>
+													<option value="6">Atitudes negativas</option>';
+												}else if($this->data['advertence']->getReason() == '5'){
+													echo '<option value="1">Ausência em Reunião</option>
+													<option value="2" >Atraso em Reuniões</option>
+													<option value="3">Ausência ou atraso nas atividades</option>
+													<option value="4">Ausência de resposta dos comunicados</option>
+													<option value="5" selected>Ausência na sede no horário acordado</option>
+													<option value="6">Atitudes negativas</option>';
+												}else if($this->data['advertence']->getReason() == '6'){
+													echo '<option value="1">Ausência em Reunião</option>
+													<option value="2">Atraso em Reuniões</option>
+													<option value="3">Ausência ou atraso nas atividades</option>
+													<option value="4">Ausência de resposta dos comunicados</option>
+													<option value="5">Ausência na sede no horário acordado</option>
+													<option value="6" selected>Atitudes negativas</option>';
 												}
 											
 											
@@ -127,8 +127,6 @@
 							<button type="submit" class="btn col-8 btn-primary mx-auto mt-3" id="confirmar">Pronto</button>
 						</div>						
 					</form>
-
-
 				</div>
 				<div class="d-none d-sm-block col-md-3 col-lg-4"></div>
 			</div>
