@@ -213,6 +213,23 @@
                     return;
                 }
 
+                if(count($members_in_project) > 0){
+                    
+                    $membro = 0;
+                    for($i = 0; $i < sizeof($members_in_project); $i++){
+                        if($members_in_project[$i][1] == "Membro"){
+                            $membro += 1;
+                        }
+                    }
+
+                    if($membro == 0){
+                        echo json_encode(array("success"=>false,"cause"=>"O projeto deve ter ao menos um membro, FORA o vendedor", "members"=>$membro));
+                        return;
+                    }
+                    
+                        
+                }
+
                 $this->distributePoints($_POST['project_id']);
                 $projectDAO->update(array("status"=>"closed"),array("project_id"=>$_POST['project_id']));
                 echo json_encode(array("success"=>true));
