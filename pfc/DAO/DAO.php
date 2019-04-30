@@ -18,7 +18,7 @@
             try {
                 $this->PDO = new \PDO("mysql:host=".$this->host.";dbname=".$this->name.";charset=".$this->charset, $this->user, $this->password);
             } catch(PDOException $e ){
-            $e->getMessage();
+            echo "Connection failed:".$e->getMessage();
             } 
         }
     }
