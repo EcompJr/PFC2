@@ -179,11 +179,12 @@
                     }else if(isset($_POST['text_area_response'])){
 
                         //Send response to the pfc request, by email to the corresponding member
-                        $remetente = "From: ".$_POST['email_remetente'];
+                        $headers = "From: ".$_POST['email_remetente']."\r\n";
                         $destinatario =  $_POST['email_destinatario'];
                         $assunto = "[Resposta a Pedido PFC] ".$_POST['reason'];
                         $corpo = $_POST['text_area_response'];
-                        $email_sent = mail($destinatario, $assunto, $corpo, $remetente);
+                        $headers .= 'Content-type: text/html;' . "\r\n";
+                        $email_sent = mail($destinatario, $assunto, $corpo, $headers);
 
                         if($email_sent){
                             $requestDAO = new RequestDAO();
