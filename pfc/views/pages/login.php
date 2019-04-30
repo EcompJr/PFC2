@@ -65,6 +65,6 @@
 	</footer>
 	
 		<?php $this->loadJavascript()?>
-		<script src="<?php $this->path('assets/js/register.js')?>"></script>
+		<script src="<?php $this->path('assets/js/member_register.js')?>"></script>
 	</body>
 </html>

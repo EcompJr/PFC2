@@ -63,7 +63,7 @@
 				</div>
 				<div class="row">
 					<div class="mx-auto col-4">
-						<img src="assets/images/profile.svg" alt="" >
+						<img src="views/assets/images/profile.svg" alt="" >
 					</div>
 				</div>
 				<div class="row mt-2">
