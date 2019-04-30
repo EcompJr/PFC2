@@ -154,7 +154,7 @@
 
                         $score = intval($member[0]->getScore());
 
-                        if($value_required < $score){ //Verify if score is sufficient
+                        if($value_required < $score || $value_required == 0){ //Verify if score is sufficient or its a refund value = 0
                             $new_score = $score - $value_required;
                             $data = array("score"=>$new_score);
                             $filters_update = array("cpf"=>$request_response[0]['member_cpf']);
