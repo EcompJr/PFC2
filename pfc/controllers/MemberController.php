@@ -110,7 +110,7 @@
 
                         if($_POST['request_choice'] == 'refund'){
 
-                            $request_id = $requestDAO->insert($cpf,$_POST['request_reason'],'opened', '');
+                            $request_id = $requestDAO->insert($cpf,"[Reembolso] ".$_POST['request_reason'],'opened', '');
         
                             //Save and associate request files
                             $paths = $this->saveRequestFiles();
@@ -118,7 +118,7 @@
                                 $requestDAO->associateFile($request_id,$path);    
                             }
                         }else if($_POST['request_choice'] == 'pfc'){
-                            $requestDAO->insert($cpf,$_POST['request_reason'],'opened', $_POST['text_area_pfc']);
+                            $requestDAO->insert($cpf,"[Pedido PFC] ".$_POST['request_reason'],'opened', $_POST['text_area_pfc']);
                         }
                         $this->redirect('member',array());
                     
@@ -353,7 +353,7 @@
                     //Saves file on server and send the response containing the path.
                     $path = $directoryName.'/'.$finalName;
                     move_uploaded_file($_FILES['files']['tmp_name'][$i],$path);
-                    array_push($paths,DOWNLOAD_URL."pfc/media/requests/".$finalName);
+                    array_push($paths,DOWNLOAD_URL."media/requests/".$finalName);
                 }
                 return $paths;
             }
